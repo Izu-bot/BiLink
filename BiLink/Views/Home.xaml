@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BiLink.Views.Home">
+        <VerticalStackLayout>
+
+        <SearchBar
+            x:Name="SearchBar"
+            Placeholder="Buscar links"
+            Margin="10, 0"
+            />
+
+        <Button
+            Text="+"
+            CornerRadius="16"
+            Margin="10"
+            HeightRequest="44"
+            FontSize="20"
+            Clicked="AddLink_Clicked"
+            />
+    </VerticalStackLayout>
+</ContentPage>
