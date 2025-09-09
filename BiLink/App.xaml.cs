@@ -9,7 +9,15 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            return new MainWindow()
+            {
+                Width = 900,
+                Height = 600,
+                MaximumHeight = 600,
+                MinimumHeight = 600,
+                MaximumWidth = 900,
+                MinimumWidth = 900
+            };
         }
     }
 }

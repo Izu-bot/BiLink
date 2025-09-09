@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BiLink"
+             x:Class="BiLink.MainWindow"
+             Title="MainWindow">
+
+    <Window.Page>
+        <local:AppShell />
+    </Window.Page>
+
+    <Window.TitleBar>
+        <TitleBar Title="BiLink"
+                  BackgroundColor="#012677"
+                  ForegroundColor="White">
+        </TitleBar>
+    </Window.TitleBar>
+</Window>
