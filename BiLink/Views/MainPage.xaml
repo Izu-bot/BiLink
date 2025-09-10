@@ -12,11 +12,11 @@
         <Grid ColumnDefinitions="*,*,*,Auto" ColumnSpacing="10" Margin="22,10">
             <VerticalStackLayout Grid.Column="0">
                 <Label Text="Link URL" TextColor="White" Margin="4" />
-                <Entry Placeholder="http://exemplo.com"  TextColor="White" Text="{Binding Url}"/>
+                <Entry Placeholder="http://exemplo.com"  TextColor="White" Text=""/>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Column="1">
                 <Label Text="Nome do link" TextColor="White" Margin="4" />
-                <Entry Placeholder="Tênis em promoção"  TextColor="White" Text="{Binding Url}"/>
+                <Entry Placeholder="Tênis em promoção"  TextColor="White" Text=""/>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Column="2">
                 <Label Text="Categoria" TextColor="White" Margin="4" />
