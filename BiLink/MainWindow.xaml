@@ -5,14 +5,15 @@
              x:Class="BiLink.MainWindow"
              Title="MainWindow">
 
+    <Window.TitleBar>
+        <TitleBar Title="BiLink"
+                  BackgroundColor="#1f1f1f"
+                  ForegroundColor="White">
+        </TitleBar>
+    </Window.TitleBar>
+
     <Window.Page>
         <local:AppShell />
     </Window.Page>
 
-    <Window.TitleBar>
-        <TitleBar Title="BiLink"
-                  BackgroundColor="#012677"
-                  ForegroundColor="White">
-        </TitleBar>
-    </Window.TitleBar>
 </Window>

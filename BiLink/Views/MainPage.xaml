@@ -2,15 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BiLink.Views.MainPage">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
-        <VerticalStackLayout Grid.Column="0" Spacing="0" BackgroundColor="#14152a">
-            
-        </VerticalStackLayout>
-    </Grid>
+    <VerticalStackLayout>
+        <SearchBar Placeholder="Pesquisar links"
+                   Margin="20"
+                   BackgroundColor="#1e1e1e"
+           />
+
+        <Grid ColumnDefinitions="*,*,*,Auto" ColumnSpacing="10" Margin="22,10">
+            <VerticalStackLayout Grid.Column="0">
+                <Label Text="Link URL" TextColor="White" Margin="4" />
+                <Entry Placeholder="http://exemplo.com"  TextColor="White" Text="{Binding Url}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1">
+                <Label Text="Nome do link" TextColor="White" Margin="4" />
+                <Entry Placeholder="Tênis em promoção"  TextColor="White" Text="{Binding Url}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="2">
+                <Label Text="Categoria" TextColor="White" Margin="4" />
+                <Picker x:Name="picker">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Compras</x:String>
+                            <x:String>Trabalho</x:String>
+                            <x:String>Escola</x:String>
+                            <x:String>Livros</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </VerticalStackLayout>
+        </Grid>
+        <Button Text="+ Adicionar" Margin="25, 0, 38 ,0" BackgroundColor="#19103a" TextColor="White" Shadow="0 2 6 Black 0.4"/>
+
+        <Border Margin="10, 30" StrokeThickness="0.3" BackgroundColor="Black"/>
+
+        <Label Text="Seus Links" FontSize="18" FontAttributes="Bold" Margin="10,0" TextColor="White"/>
+    </VerticalStackLayout>
 
 </ContentPage>
