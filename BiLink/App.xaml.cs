@@ -1,4 +1,6 @@
-﻿namespace BiLink
+﻿using BiLink.Models.Service;
+
+namespace BiLink
 {
     public partial class App : Application
     {

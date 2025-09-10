@@ -72,11 +72,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
-	  <Folder Include="ViewModels\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="MainWindow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
