@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BiLink.Views.BookmarksPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+			 xmlns:models="clr-namespace:BiLink.Models"
+             x:Class="BiLink.Views.BookmarksPage"
+			 BackgroundColor="#121212">
+
+	<Grid RowDefinitions="Auto, *">
+		<VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="26">
+			<Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+				<Entry Text="{Binding Name}" Placeholder="Titulo do marcador" Grid.Column="0" BackgroundColor="#212121" />
+
+				<Button Grid.Column="1" Text="+ Criar" BackgroundColor="#bcc2d1" TextColor="Black" Command="{Binding AddBookmark}"/>
+			</Grid>
+
+			<Label Text="Seus Marcadores" FontSize="18" FontAttributes="Bold" Margin="2, 20, 0, 10" TextColor="#E0E0E0"/>
+		</VerticalStackLayout>
+
+		<CollectionView Grid.Row="1"
+						ItemsSource="{Binding Categorias}"
+						Margin="6">
+			<CollectionView.ItemTemplate>
+
+				<DataTemplate x:DataType="models:Categorias">
+					<VerticalStackLayout>
+						<Border StrokeThickness="0.3"
+								Padding="6"
+								Margin="14"
+								StrokeShape="RoundRectangle 6" 
+								Shadow="0 2 6 Black 0.4">
+							<Grid ColumnDefinitions="*, Auto">
+								<VerticalStackLayout Grid.Column="0">
+									<Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" TextColor="#E0E0E0" VerticalOptions="Center" Margin="6, 18, 0, 0"/>
+								</VerticalStackLayout>
+
+								<Button Grid.Column="2"
+									 Text="&#xf2ed;"
+									 BackgroundColor="Transparent"
+									 TextColor="#CCCCCC"
+									 FontSize="18"
+									 FontFamily="FontAwesome"  
+									 Margin="6"
+									  />
+							</Grid>
+						</Border>
+					</VerticalStackLayout>
+				</DataTemplate>
+			</CollectionView.ItemTemplate>
+		</CollectionView>
+	</Grid>
 </ContentPage>

@@ -3,35 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:BiLink.Models"
              xmlns:viewModels="clr-namespace:BiLink.ViewModels"
-             x:Class="BiLink.Views.MainPage">
+             x:Class="BiLink.Views.MainPage"
+			 BackgroundColor="#121212">
 
     <Grid RowDefinitions="Auto, *">
 
         <VerticalStackLayout Grid.Row="0">
             <SearchBar Placeholder="Pesquisar links"
                        Margin="20"
-                       BackgroundColor="#1e1e1e" />
+                       BackgroundColor="#212121"
+					   TextColor="#E0E0E0"/>
 
-            <Grid ColumnDefinitions="*,*,*,Auto" ColumnSpacing="10" Margin="22,10">
-                <VerticalStackLayout Grid.Column="0">
-                    <Label Text="Link URL" TextColor="White" Margin="4" />
-                    <Entry Placeholder="http://exemplo.com" TextColor="White" Text="{Binding Url}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Column="1">
-                    <Label Text="Nome do link" TextColor="White" Margin="4" />
-                    <Entry Placeholder="Tênis em promoção" TextColor="White" Text="{Binding Name}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout Grid.Column="2">
-                    <Label Text="Categoria" TextColor="White" Margin="4" />
-                    <Picker x:Name="picker" ItemsSource="{Binding Categorias}" SelectedItem="{Binding Categoria}" />
-                </VerticalStackLayout>
-            </Grid>
+			<Grid ColumnDefinitions="*,*" RowDefinitions="*,Auto,Auto" ColumnSpacing="10" Margin="22,10">
+				<VerticalStackLayout Grid.Column="0" Grid.Row="0">
+					<Label Text="Link URL" TextColor="#E0E0E0" Margin="4" />
+					<Entry Placeholder="http://exemplo.com" BackgroundColor="#212121" TextColor="#E0E0E0" Text="{Binding Url}"/>
+				</VerticalStackLayout>
 
-            <Button Text="+ Adicionar" Margin="25, 0, 38 ,0" BackgroundColor="#bcc2d1" TextColor="Black" Command="{Binding AddLinkCommand}"/>
+				<VerticalStackLayout Grid.Column="1" Grid.Row="0">
+					<Label Text="Nome do link" TextColor="#E0E0E0" Margin="4" />
+					<Entry Placeholder="Tênis em promoção" BackgroundColor="#212121" TextColor="#E0E0E0" Text="{Binding Name}"/>
+				</VerticalStackLayout>
 
-            <Border Margin="10, 30" StrokeThickness="0.3" BackgroundColor="Black"/>
+				<VerticalStackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+					<Label Text="Categoria" TextColor="#E0E0E0" Margin="4, 18, 0, 0" />
+					<Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+						<Picker x:Name="picker" Grid.Column="0" BackgroundColor="#212121" ItemsSource="{Binding Categorias}" SelectedItem="{Binding CategoriaSelecionada}" ItemDisplayBinding="{Binding Nome}" />
 
-            <Label Text="Seus Links" FontSize="18" FontAttributes="Bold" Margin="10,0" TextColor="White"/>
+						<Button Grid.Column="1" Text="+ Adicionar" BackgroundColor="#bcc2d1" TextColor="Black" Command="{Binding AddLinkCommand}"/>
+					</Grid>
+				</VerticalStackLayout>
+
+			</Grid>
+
+			<Label Text="Seus Links" FontSize="18" FontAttributes="Bold" Margin="24, 20, 0, 10" TextColor="#E0E0E0"/>
         </VerticalStackLayout>
 
         <CollectionView Grid.Row="1"
@@ -41,22 +46,22 @@
                 <DataTemplate x:DataType="models:Link">
                     <VerticalStackLayout Spacing="0">
                         <Border StrokeThickness="0.3" 
-                        BackgroundColor="#1e1e1e" 
+                        BackgroundColor="#212121" 
                         Padding="6" 
-                        Margin="0, 8" 
+                        Margin="14" 
                         StrokeShape="RoundRectangle 6" 
                         Shadow="0 2 6 Black 0.4" >
                             <Grid ColumnDefinitions="*,Auto, Auto" >
                                 <VerticalStackLayout Grid.Column="0">
-                                    <Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" Margin="6, 18, 0, 0"/>
-                                    <!--<Label Text="{Binding URL}" FontSize="14" TextColor="White"/>-->
-                                </VerticalStackLayout>
+									<Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" TextColor="#E0E0E0" VerticalOptions="Center" Margin="6, 18, 0, 0"/>
+									<!--<Label Text="{}" FontSize="10" TextColor="White"/>-->
+								</VerticalStackLayout>
 
 
                                 <Button Grid.Column="1"
                                      Text="&#xf0c5;"
                                      BackgroundColor="Transparent"
-                                     TextColor="#bcc2d1"
+                                     TextColor="#CCCCCC"
                                      FontSize="18"
                                      FontFamily="FontAwesome"  
                                      Margin="6"
@@ -68,7 +73,7 @@
                                 <Button Grid.Column="2"
                                      Text="&#xf2ed;"
                                      BackgroundColor="Transparent"
-                                     TextColor="#bcc2d1"
+                                     TextColor="#CCCCCC"
                                      FontSize="18"
                                      FontFamily="FontAwesome"  
                                      Margin="6"

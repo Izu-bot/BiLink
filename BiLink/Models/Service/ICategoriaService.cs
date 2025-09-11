@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace BiLink.Models.Service
 {
-    internal interface ICategoriaService
+    public interface ICategoriaService
     {
         Task<int> AddCategoria(Categorias categorias);
         Task<int> DeleteCategoria(Categorias categorias);
         Task<int> UpdateCategoria(Categorias categorias);
-        Task<List<Categorias>> GetAllLinks();
-        Task<Categorias> GetLinkById(int id);
+        Task<List<Categorias>> GetAllCategorias(int page, int pageSize);
+        Task<Categorias> GetCategoriaById(int id);
+        Task<Categorias> GetCategoriaByName(string name);
     }
 }

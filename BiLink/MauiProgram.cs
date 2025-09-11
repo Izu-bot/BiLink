@@ -38,10 +38,12 @@ namespace BiLink
             builder.Services.AddSingleton<Models.Service.ICategoriaService, Models.Service.CategoriaService>();
 
             builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddSingleton<BookmarksPageViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<BookmarksPage>();
 
-            return builder.Build();
+			return builder.Build();
         }
     }
 }

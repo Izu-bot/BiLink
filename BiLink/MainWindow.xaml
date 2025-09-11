@@ -7,8 +7,7 @@
 
     <Window.TitleBar>
         <TitleBar Title="BiLink"
-                  BackgroundColor="#1f1f1f"
-                  ForegroundColor="White">
+                  BackgroundColor="#121212">
         </TitleBar>
     </Window.TitleBar>
 

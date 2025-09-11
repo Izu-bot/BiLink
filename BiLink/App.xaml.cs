@@ -13,12 +13,12 @@ namespace BiLink
         {
             return new MainWindow()
             {
-                Width = 900,
+                Width = 1200,
                 Height = 600,
                 MaximumHeight = 600,
                 MinimumHeight = 600,
-                MaximumWidth = 900,
-                MinimumWidth = 900,
+                MaximumWidth = 1200,
+                MinimumWidth = 800,
             };
         }
     }
