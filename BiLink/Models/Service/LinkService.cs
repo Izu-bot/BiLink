@@ -17,12 +17,17 @@ namespace BiLink.Models.Service
 
         public async Task<List<Link>> GetAllLinks(int page, int pageSize)
         {
-            return await _database.Table<Link>()
-                .OrderBy(l => l.Id)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-        }
+			var offset = (page - 1) * pageSize;
+
+			var query = @"
+                SELECT Links.*, Categorias.Nome as CategoriaNome 
+                FROM Links 
+                INNER JOIN Categorias ON Links.CategoriaId = Categorias.Id 
+                ORDER BY Links.Id 
+                LIMIT ? OFFSET ?";
+
+			return await _database.QueryAsync<Link>(query, pageSize, offset);
+		}
 
         public Task<Link> GetLinkById(int id) => _database.Table<Link>().Where(i => i.Id == id).FirstOrDefaultAsync();
 

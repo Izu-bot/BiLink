@@ -23,6 +23,8 @@ namespace BiLink.Models.Service
                 .ToListAsync();
 		}
 
+        public Task<List<Categorias>> GetAllCategorias() => _database.Table<Categorias>().ToListAsync();
+
         public Task<Categorias> GetCategoriaById(int id) => _database.Table<Categorias>().Where(i => i.Id == id).FirstOrDefaultAsync();
 
         public Task<Categorias> GetCategoriaByName(string name) => _database.Table<Categorias>().Where(i => i.Nome == name).FirstOrDefaultAsync();

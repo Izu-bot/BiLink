@@ -12,8 +12,6 @@ namespace BiLink.ViewModels
 		private readonly ICategoriaService _categoriaService;
 		private int _currentPage = 1;
 		private const int PageSize = 20;
-		private int _categoriaPage = 1;
-		private const int CategoriaPageSize = 20;
 
 		private bool _isLoadingMore;
 		public bool IsLoadingMore
@@ -79,21 +77,19 @@ namespace BiLink.ViewModels
 			DeleteLinkCommand = new Command<Link>(async (link) => await DeleteLinkAsync(link));
 			CopyLink = new Command<Link>(async (link) => await ExecuteCopy(link));
 
-			// Carregue os dados das categorias no início
-			Task.Run(async () => await LoadCategoriasAsync());
 		}
 
 		public async Task LoadCategoriasAsync()
 		{
 			Categorias.Clear();
-			var categoriasDoBanco = await _categoriaService.GetAllCategorias(_categoriaPage, PageSize);
+			var categoriasDoBanco = await _categoriaService.GetAllCategorias();
 			foreach (var categoria in categoriasDoBanco)
 			{
 				Categorias.Add(categoria);
 			}
 		}
 
-		private async Task LoadLinksAsync()
+		public async Task LoadLinksAsync()
 		{
 			if (IsLoadingMore) return;
 
@@ -120,13 +116,8 @@ namespace BiLink.ViewModels
 			if (string.IsNullOrWhiteSpace(Url) || string.IsNullOrWhiteSpace(Name))
 				return;
 
-			// Verifique se uma categoria foi selecionada para evitar NullReferenceException
 			if (CategoriaSelecionada == null)
-			{
-				// Mostre uma mensagem de erro ou defina um comportamento padrão
-				await Toast.Make("Selecione uma categoria!").Show();
 				return;
-			}
 
 			var newLink = new Link
 			{

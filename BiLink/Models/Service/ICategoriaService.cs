@@ -12,6 +12,7 @@ namespace BiLink.Models.Service
         Task<int> DeleteCategoria(Categorias categorias);
         Task<int> UpdateCategoria(Categorias categorias);
         Task<List<Categorias>> GetAllCategorias(int page, int pageSize);
+        Task<List<Categorias>> GetAllCategorias();
         Task<Categorias> GetCategoriaById(int id);
         Task<Categorias> GetCategoriaByName(string name);
     }

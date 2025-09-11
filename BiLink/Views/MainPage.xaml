@@ -47,14 +47,14 @@
                     <VerticalStackLayout Spacing="0">
                         <Border StrokeThickness="0.3" 
                         BackgroundColor="#212121" 
-                        Padding="6" 
+                        Padding="8" 
                         Margin="14" 
                         StrokeShape="RoundRectangle 6" 
                         Shadow="0 2 6 Black 0.4" >
                             <Grid ColumnDefinitions="*,Auto, Auto" >
                                 <VerticalStackLayout Grid.Column="0">
-									<Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" TextColor="#E0E0E0" VerticalOptions="Center" Margin="6, 18, 0, 0"/>
-									<!--<Label Text="{}" FontSize="10" TextColor="White"/>-->
+									<Label Text="{Binding Nome}" FontSize="16" FontAttributes="Bold" TextColor="#E0E0E0" VerticalOptions="Center" Margin="6, 0"/>
+									<Label Text="{Binding CategoriaNome}" FontSize="14" TextColor="#3075A1" VerticalOptions="Center" Margin="6, 0"/>
 								</VerticalStackLayout>
 
 

@@ -13,10 +13,12 @@ public partial class MainPage : ContentPage
 		BindingContext = _viewModel = vm;
     }
 
-	protected override void OnAppearing()
+	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
-		if (_viewModel.Links.Count == 0)
-			_viewModel.LoadLinksCommand.Execute(null);
-    }
+		
+		await _viewModel.LoadLinksAsync();
+
+		await _viewModel.LoadCategoriasAsync();
+	}
 }

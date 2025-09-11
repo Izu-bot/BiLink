@@ -13,6 +13,7 @@ namespace BiLink.Models
         public string URL { get; set; } = string.Empty;
         [Indexed]
         public int CategoriaId { get; set; }
+        public string CategoriaNome { get; set; } = string.Empty;
     }
 
     [Table("Categorias")]
@@ -23,4 +24,5 @@ namespace BiLink.Models
         [NotNull, Unique]
         public string Nome { get; set; } = string.Empty;
     }
+
 }
