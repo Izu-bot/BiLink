@@ -11,7 +11,8 @@ namespace BiLink.Models.Service
         Task<int> AddLink(Link link);
         Task<int> DeleteLink(Link link);
         Task<int> UpdateLink(Link link);
-        Task<List<Link> >GetAllLinks(int page, int pageSize);
+        Task<List<Link>>GetAllLinks(int page, int pageSize);
+        Task<List<Link>> GetLinksWithName(string name, int page, int pageSize);
         Task<Link> GetLinkById(int id);
     }
 }

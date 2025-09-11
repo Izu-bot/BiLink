@@ -60,6 +60,24 @@ namespace BiLink.ViewModels
 			}
 		}
 
+		private string _search;
+		public string Search
+		{
+			get => _search;
+			set
+			{
+				if (_search != value)
+				{
+					_search = value;
+					OnPropertyChanged();
+
+					// Executa a busca com o novo valor
+					// Usamos _ = para descartar a task e não travar a UI
+					_ = ExecuteSearchAsync(_search);
+				}
+			}
+		}
+
 		public ObservableCollection<Link> Links { get; } = new ObservableCollection<Link>();
 		public ObservableCollection<Categorias> Categorias { get; } = new ObservableCollection<Categorias>();
 		public ICommand LoadLinksCommand { get; }
@@ -76,7 +94,34 @@ namespace BiLink.ViewModels
 			AddLinkCommand = new Command(async () => await AddLinkAsync());
 			DeleteLinkCommand = new Command<Link>(async (link) => await DeleteLinkAsync(link));
 			CopyLink = new Command<Link>(async (link) => await ExecuteCopy(link));
+		}
 
+		private async Task ExecuteSearchAsync(string searchItem)
+		{
+			await Task.Delay(1500);
+
+			if (IsLoadingMore) return;
+			try
+			{
+				IsLoadingMore = true;
+				Links.Clear();
+
+				if (string.IsNullOrEmpty(searchItem))
+				{
+					IsLoadingMore = false;
+					await LoadLinksAsync();
+				}
+				else
+				{
+					var resultado = await _linkService.GetLinksWithName(searchItem, _currentPage, PageSize);
+					foreach (var link in resultado)
+						Links.Add(link);
+				}
+			}
+			finally
+			{
+				IsLoadingMore = false;
+			}
 		}
 
 		public async Task LoadCategoriasAsync()

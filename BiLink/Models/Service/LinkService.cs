@@ -31,6 +31,21 @@ namespace BiLink.Models.Service
 
         public Task<Link> GetLinkById(int id) => _database.Table<Link>().Where(i => i.Id == id).FirstOrDefaultAsync();
 
+        public async Task<List<Link>> GetLinksWithName(string name, int page, int pageSize)
+        {
+            var offset = (page - 1) * pageSize;
+
+            var query = @"
+                SELECT Links.*, Categorias.Nome as CategoriaNome 
+                FROM Links 
+                INNER JOIN Categorias ON Links.CategoriaId = Categorias.Id 
+                WHERE LOWER(Links.Nome) LIKE '%' || LOWER(?) || '%' 
+                ORDER BY Links.Id 
+                LIMIT ? OFFSET ?";
+
+			return await _database.QueryAsync<Link>(query, name, pageSize, offset);
+		}
+
         public Task<int> UpdateLink(Link link) => _database.UpdateAsync(link);
     }
 }
