@@ -1,4 +1,5 @@
 using BiLink.ViewModels;
+using System.Threading.Tasks;
 
 namespace BiLink.Views;
 
@@ -12,10 +13,9 @@ public partial class BookmarksPage : ContentPage
 		BindingContext = _viewModel = vm;
 	}
 
-	protected override void OnAppearing()
+	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
-		if (_viewModel.Categorias.Count == 0)
-			_viewModel.LoadCategoriaCommand.Execute(null);
+		await _viewModel.ExecuteLoadCategoriaCommand();
 	}
 }

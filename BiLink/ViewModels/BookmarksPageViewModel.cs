@@ -1,5 +1,6 @@
 ﻿using BiLink.Models;
 using BiLink.Models.Service;
+using Microsoft.Maui.Controls.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -42,6 +43,7 @@ namespace BiLink.ViewModels
 
         public ICommand LoadCategoriaCommand { get; }
         public ICommand AddBookmark { get; }
+        public ICommand DeleteCategoria { get; }
 
 		public BookmarksPageViewModel(ICategoriaService categoriaService)
         {
@@ -49,6 +51,19 @@ namespace BiLink.ViewModels
 
             LoadCategoriaCommand = new Command(async () => await ExecuteLoadCategoriaCommand());
             AddBookmark = new Command(async () => await ExecuteAddBookmarkCommand());
+            DeleteCategoria = new Command<Categorias>(async (categoria) => await ExecuteDeleteCategoriaCommand(categoria));
+		}
+
+        private async Task ExecuteDeleteCategoriaCommand(Categorias categoria)
+        {
+            if (categoria == null)
+                return;
+
+			bool resposta = await Application.Current!.Windows[0].Page!.DisplayAlert("Confirmação", $"Deseja excluir a categoria '{categoria.Nome}'?", "Sim", "Não");
+
+            if (resposta)
+			    await _categoriaService.DeleteCategoria(categoria);
+                Categorias.Remove(categoria);
 		}
 
         private async Task ExecuteAddBookmarkCommand()
@@ -76,7 +91,7 @@ namespace BiLink.ViewModels
             Name = string.Empty;
 		}
 
-        private async Task ExecuteLoadCategoriaCommand()
+        public async Task ExecuteLoadCategoriaCommand()
         {
             if (IsLoadingMore)
                 return;
