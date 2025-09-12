@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:h="https://notifyicon.com/"
+             x:Class="BiLink.Views.NotifyIconPage"
+             x:Name="this"
+             Title="NotifyIconPage">
+
+    <ContentPage.BindingContext>
+        <Binding Source="{RelativeSource Self}" />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <h:TaskbarIcon
+                 x:Name="TrayIcon"
+                 LeftClickCommand="{Binding ShowHideWindowCommand}"
+                 NoLeftClickDelay="True">
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Monstrar Janela" Command="{Binding ShowHideWindowCommand}"/>
+                    <MenuFlyoutSeparator />
+                    <MenuFlyoutItem Text="Sair" Command="{Binding ExitApplicationCommand}" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
+        </h:TaskbarIcon>
+    </Grid>
+</ContentPage>

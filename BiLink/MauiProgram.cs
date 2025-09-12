@@ -2,6 +2,7 @@
 using BiLink.Views;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using H.NotifyIcon;
 
 namespace BiLink
 {
@@ -11,11 +12,12 @@ namespace BiLink
         {
             var builder = MauiApp.CreateBuilder();
             builder
+                .UseMauiApp<App>()
                 .UseMauiCommunityToolkit(opt =>
                 {
                     opt.SetShouldEnableSnackbarOnWindows(true);
                 })
-                .UseMauiApp<App>()
+                .UseNotifyIcon()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
